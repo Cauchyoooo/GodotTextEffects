@@ -9,11 +9,23 @@ signal _updated()
 static var DEFAULTS := RicherTextLabel.new()
 static var STACK_STATE := preload("res://addons/richtext2/stack_state.gd").new()
 
+static var REGEX_INFO_TO_DICT := RegEx.create_from_string(r'(?:"[^"]*"|\[[^\]]*\]|\([^)]*\)|\S)+')
+static var REGEX_PARSE := RegEx.create_from_string(r"\[\[.*?\]|\[.*?\]")
+static var REGEX_REPLACE_NUMBERS := RegEx.create_from_string(r"\b\d{1,3}(?:,\d{3})*(?:\.\d+)?\b")
+static var REGEX_REPLACE_MARKDOWN := RegEx.create_from_string(r"(\*{1,3}[^*]+?\*{1,3}|_{1,3}[^_]+?_{1,3}|~[^~]+~)")
+static var REGEX_REPLACE_PLACEHOLDERS := RegEx.create_from_string(r"&&(\d+)&&")
+static var REGEX_REPLACE_CONTEXT := RegEx.create_from_string(r"(?<!\\)\$[a-zA-Z0-9]+(?:_[a-zA-Z0-9]+)*(?:\.[a-zA-Z0-9]+(?:_[a-zA-Z0-9]+)*)*(?:\([^\)]*\))?(?![^\[\]]*\])")
+static var REGEX_REPLACE_CONTEXT_2 := RegEx.create_from_string(r"\{.*?\}")
+static var REGEX_REPLACE_NICE_QUOTES := RegEx.create_from_string(r"\"(.*?)\"")
+static var REGEX_REPLACE_EMOJIS := RegEx.create_from_string(r":([a-zA-Z0-9\+\-]+):")
+static var REGEX_MARKDOWN := RegEx.create_from_string(r"\[[^\]]*\]|\{[^}]*\}|<[^>]*>")
+
 const DIR_TEXT_EFFECTS := "res://addons/richtext2/text_effects/effects"
 const DIR_TEXT_TRANSITIONS := "res://addons/richtext2/text_effects/anims"
 const MIN_FONT_SIZE := 8
 const MAX_FONT_SIZE := 512
-const BUILTIN_EFFECTS: PackedStringArray = ["pulse", "wave", "tornado", "shake", "fade", "rainbow"]
+const BUILTIN_EFFECTS: PackedStringArray = [ "pulse", "wave", "tornado", "shake", "fade", "rainbow" ]
+const IMAGE_EXTENSIONS: PackedStringArray = [ ".png", ".webp", ".svg", ".bmp", ".jpg", ".jpeg" ]
 
 enum {
 	T_NONE,
@@ -27,6 +39,7 @@ enum {
 	T_TABLE, T_CELL,
 	T_EFFECT,
 	T_PIPE,
+	T_IMAGE,
 	T_FLAG_CAP, T_FLAG_UPPER, T_FLAG_LOWER,
 }
 
@@ -44,6 +57,12 @@ enum EffectsMode {
 	OFF_IN_EDITOR, ## Don't animate effects in edit mode.
 	ON, ## Enable text effects.
 }
+
+## Hack to get around Godot's laggy editor inspector.
+@export var show_properties := true:
+	set(p):
+		show_properties = p
+		notify_property_list_changed()
 
 ## Text including bbcode to be converted.
 var bbcode := "": set=set_bbcode
@@ -235,10 +254,18 @@ var meta_auto_https := true
 ## Doesn't actually work at the moment.
 var meta_cursor := Input.CursorShape.CURSOR_POINTING_HAND
 
-## Will set custom_minimum_size.x and size.x to get_content_width()
-var fit_width := false
-## Added to the width.
-var fit_width_padding := 10
+## Path to look for images inside of.
+var image_path := "res://"
+## Automatically resize images to the font height.
+var image_resize_to_font_size := true:
+	set(s):
+		image_resize_to_font_size = s
+		_redraw()
+## Scale images. (Works with `image_resize_to_font_size`.)
+var image_scale := 1.0:
+	set(s):
+		image_scale = s
+		_redraw()
 
 ## Override so bbcode_enabled = true at init.
 var override_bbcodeEnabled := true:
@@ -323,9 +350,6 @@ func _set_bbcode():
 		if is_inside_tree():
 			await get_tree().process_frame
 		custom_minimum_size.y = get_content_height()
-		if fit_width:
-			custom_minimum_size.x = get_content_width() + fit_width_padding
-			size.x = custom_minimum_size.x
 	
 	_updated.emit()
 
@@ -346,6 +370,7 @@ func _meta_hover_ended(meta: Variant):
 	set_default_cursor_shape(Control.CURSOR_ARROW)
 
 func _meta_clicked(meta: Variant):
+	print("Meta Clicked.")
 	# Goto URL.
 	if _meta_hovered.begins_with("https://") and meta_auto_https:
 		OS.shell_open(_meta_hovered)
@@ -371,7 +396,6 @@ func _make_custom_tooltip(for_text: String) -> Object:
 	label.context_enabled = context_enabled
 	label.context_path = context_path
 	label.bbcode = for_text
-	label.fit_width = true
 	return label
 
 func _update_theme_outline():
@@ -405,7 +429,7 @@ func set_font(id: String):
 
 func _update_subfonts():
 	if font_auto_setup:
-		FontHelper.set_fonts(self, font, font_bold_weight, font_italics_slant, font_italics_weight, FontHelper.cache)
+		FontHelper.set_fonts(self, font, font_bold_weight, font_italics_slant, font_italics_weight, FontHelper.ref.fonts)
 
 func get_normal_font() -> Font:
 	return get_theme_font(&"normal_font")
@@ -419,13 +443,13 @@ func _preparse(btext: String) -> String:
 	if markdown_enabled:
 		# Hide bbcode with placeholders.
 		var bbcode_placeholder: Array[String]
-		btext = _replace(btext, r"\[[^\]]*\]|\{[^}]*\}|<[^>]*>", func(strings):
+		btext = _replace(btext, REGEX_MARKDOWN, func(strings):
 			var index := str(len(bbcode_placeholder))
 			bbcode_placeholder.append(strings[0])
 			return "&&" + index + "&&")
 		
 		# Replace markdown.
-		btext = _replace(btext, r"(\*{1,3}[^*]+?\*{1,3}|_{1,3}[^_]+?_{1,3}|~[^~]+~)", func(strings):
+		btext = _replace(btext, REGEX_REPLACE_MARKDOWN, func(strings):
 			var tag: String = strings[0]
 			# TODO: Improve this.
 			if is_style(tag, "***"): return markdown_format_bold_italics2 % unwrap_stype(tag, "***")
@@ -439,7 +463,7 @@ func _preparse(btext: String) -> String:
 		)
 		
 		# Replace the placeholders.
-		btext = _replace(btext, r"&&(\d+)&&", func(strings):
+		btext = _replace(btext, REGEX_REPLACE_PLACEHOLDERS, func(strings):
 			return bbcode_placeholder[strings[1].to_int()])
 	
 	# Nicefy up stuff that isn't tagged.
@@ -454,7 +478,7 @@ func _preparse_untagged(btext: String) -> String:
 	
 	# Open + closed quotes.
 	if nicer_quotes_enabled:
-		btext = _format_between(btext, '"', nicer_quotes_format)
+		btext = _replace(btext, REGEX_REPLACE_NICE_QUOTES, func(s): return nicer_quotes_format & s[1])
 	
 	# Replace emojis.
 	if autostyle_emojis:
@@ -465,35 +489,7 @@ func _preparse_untagged(btext: String) -> String:
 	
 	return btext
 
-func _format_between(st: String, tag: String, frmt: String) -> String:
-	return _replace_between(st, tag, func(strings): return frmt % strings[1])
-
-# New version that works regardless of bbcode in the middle.
-func _replace_between(st: String, tag: String, call: Callable) -> String:
-	return _replace_between_both(st, tag, tag, call)
-
-func _replace_between_both(st: String, head: String, tail: String, call: Callable) -> String:
-	return _replace(st, escape_regex(head) + r"(.*?)" + escape_regex(tail), call)
-
-func escape_regex(input: String) -> String:
-	input = input.replace("\\", "\\\\")
-	input = input.replace(".", "\\.")
-	input = input.replace("^", "\\^")
-	input = input.replace("$", "\\$")
-	input = input.replace("*", "\\*")
-	input = input.replace("+", "\\+")
-	input = input.replace("?", "\\?")
-	input = input.replace("(", "\\(")
-	input = input.replace(")", "\\)")
-	input = input.replace("[", "\\[")
-	input = input.replace("]", "\\]")
-	input = input.replace("{", "\\{")
-	input = input.replace("}", "\\}")
-	input = input.replace("|", "\\|")
-	return input
-
-func _replace(string: String, pattern: String, call: Callable) -> String:
-	var regex := RegEx.create_from_string(pattern)
+func _replace(string: String, regex: RegEx, call: Callable) -> String:
 	var offset := 0
 	var output := ""
 	while true:
@@ -507,19 +503,19 @@ func _replace(string: String, pattern: String, call: Callable) -> String:
 	return output
 
 func replace_emojis(string: String) -> String:
-	return _replace(string, r":([a-zA-Z0-9\+\-]+):", func(strings):
+	return _replace(string, REGEX_REPLACE_EMOJIS, func(strings):
 		if strings[1] in Emoji.NAMES:
 			return "[:" + strings[1] + ":]"
 		return strings[0])
 
 func replace_context(string: String) -> String:
 	# $pattern
-	string = _replace(string, r"(?<!\\)\$[a-zA-Z0-9]+(?:_[a-zA-Z0-9]+)*(?:\.[a-zA-Z0-9]+(?:_[a-zA-Z0-9]+)*)*(?:\([^\)]*\))?(?![^\[\]]*\])", func(strings):
+	string = _replace(string, REGEX_REPLACE_CONTEXT, func(strings):
 		var path = strings[0]
 		return _get_expression_rich(path, path.trim_prefix("$")))
 	
 	# {} pattern
-	string = _replace(string, r"\{.*?\}", func(strings):
+	string = _replace(string, REGEX_REPLACE_CONTEXT_2, func(strings):
 		var exp: String = strings[0]
 		return _get_expression_rich(exp, unwrap(exp, "{}")))
 	
@@ -550,18 +546,17 @@ func _get_expression_rich(exp: String, exp_clean: String) -> String:
 		return str(value)
 
 func replace_numbers(string: String) -> String:
-	return _replace(string, r"\b\d{1,3}(?:,\d{3})*(?:\.\d+)?\b", func(strings):
+	return _replace(string, REGEX_REPLACE_NUMBERS, func(strings):
 		var numstr: String = strings[0]
 		if autostyle_numbers_pad_decimals and "." in numstr:
 			numstr = numstr.pad_decimals(autostyle_numbers_decimals)
 		return autostyle_numbers_tag % numstr)
 
 func _parse(btext: String):
-	var regex := RegEx.create_from_string(r"\[\[.*?\]|\[.*?\]")
 	var offset := 0
 	var output := ""
 	while true:
-		var m := regex.search(btext, offset)
+		var m := REGEX_PARSE.search(btext, offset)
 		if not m:
 			break
 		_add_text(btext.substr(offset, m.get_start()-offset))
@@ -683,13 +678,18 @@ func _parse_tag(tag: String):
 		return
 	
 	# Meta.
-	if tag.begins_with("!"):
+	if tag.begins_with("@"):
 		_push_meta(tag.substr(1))
 		return
 	
 	# Hint.
 	if tag.begins_with("^"):
 		_push_hint(tag.substr(1))
+		return
+	
+	# Image.
+	if tag.begins_with("!"):
+		_push_image(tag)
 		return
 	
 	var tag_name: String
@@ -711,8 +711,6 @@ func _parse_tag(tag: String):
 		tag_info = ""
 	
 	_parse_tag_info(tag_name, tag_info, tag)
-
-
 
 func _parse_tag_info(tag: String, info: String, raw: String):
 	# Font sizes.
@@ -871,6 +869,30 @@ func _push_pipe(pipe: String):
 func _pop_pipe():
 	STACK_STATE.pipes.pop_back()
 
+func _push_image(tag: String):
+	_stack_push(T_IMAGE)
+	var img_name := tag.trim_prefix("!")
+	for ext in IMAGE_EXTENSIONS:
+		var full_path := image_path.path_join(img_name) + ext
+		if FileAccess.file_exists(full_path):
+			var tex: Texture2D = load(full_path)
+			var wide := tex.get_width()
+			var high := tex.get_height()
+			if image_resize_to_font_size:
+				var aspect := wide / float(high)
+				wide = aspect * font_size
+				high = font_size
+			if image_scale != 1.0:
+				wide *= image_scale
+				high *= image_scale
+			add_image(tex, wide, high)
+			return
+	
+	# Error: No image found.
+	push_color(Color.RED)
+	add_text("[%s]" % [tag])
+	pop()
+	
 func _push_font(font: String):
 	_stack_push(T_FONT, STACK_STATE.font)
 	STACK_STATE.font = font
@@ -1060,6 +1082,9 @@ func _install_effect(id: String) -> bool:
 	return false
 
 func _get_property_list():
+	#if not show_properties:
+		#return []
+	#
 	var props: Array[Dictionary]
 	_prop(props, &"bbcode", TYPE_STRING, PROPERTY_HINT_MULTILINE_TEXT)
 	_prop_enum(props, &"effects", EffectsMode)
@@ -1068,7 +1093,7 @@ func _get_property_list():
 	_prop(props, &"emoji_scale", TYPE_FLOAT)
 	
 	_prop_group(props, "Font", "font_")
-	var fonts := "," + ",".join(FontHelper.cache.keys())
+	var fonts := "," + ",".join(FontHelper.ref.fonts.keys())
 	_prop(props, &"font", TYPE_STRING, PROPERTY_HINT_ENUM_SUGGESTION, fonts)
 	_prop(props, &"font_auto_setup", TYPE_BOOL)
 	_prop(props, &"font_size", TYPE_INT)
@@ -1125,6 +1150,11 @@ func _get_property_list():
 	
 	_prop_group(props, "Effect", "effect_")
 	_prop_range(props, &"effect_weight")
+	
+	_prop_group(props, "Image", "image_")
+	_prop(props, &"image_path", TYPE_STRING)
+	_prop(props, &"image_resize_to_font_size", TYPE_BOOL)
+	_prop(props, &"image_scale", TYPE_FLOAT)
 
 	_prop_group(props, "Meta", "meta_")
 	_prop(props, &"meta_auto_https", TYPE_BOOL)
@@ -1134,8 +1164,6 @@ func _get_property_list():
 	_prop(props, &"override_bbcodeEnabled", TYPE_BOOL)
 	_prop(props, &"override_clipContents", TYPE_BOOL)
 	_prop(props, &"override_fitContent", TYPE_BOOL)
-	_prop(props, &"fit_width", TYPE_BOOL)
-	_prop(props, &"fit_width_padding", TYPE_INT)
 	
 	return props
 
@@ -1166,8 +1194,7 @@ func _prop(list: Array[Dictionary], name: StringName, type: int, hint: PropertyH
 static func info_to_dict(info: String) -> Dictionary:
 	var out := {}
 	if "=" in info:
-		var re := RegEx.create_from_string(r'(?:"[^"]*"|\[[^\]]*\]|\([^)]*\)|\S)+')
-		for rm in re.search_all(info):
+		for rm in REGEX_INFO_TO_DICT.search_all(info):
 			var kv = rm.get_string().split("=", true, 1)
 			out[kv[0]] = _str2var(kv[1])
 	return out

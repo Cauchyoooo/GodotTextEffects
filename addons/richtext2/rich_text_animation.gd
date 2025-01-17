@@ -25,6 +25,11 @@ signal wait_finished()
 signal hold_started()
 signal hold_finished()
 
+static var REGEX_SIGNAL_QUOTES := RegEx.create_from_string(r'"([^"]*)"')
+static var REGEX_SIGNAL_STARS := RegEx.create_from_string(r'\*([^*]+)\*')
+static var REGEX_CODE_PATTERN := RegEx.create_from_string(r"<([^>]+)>")
+static var REGEX_BOOKMARK := RegEx.create_from_string(r"(?<!#)(?<!\[)#\w*[^_\W](?!\])")
+
 enum {
 	TRIG_NONE = 1000, # Offset because it's built on the enum of the RicherTextLabel class.
 	TRIG_WAIT,	## [wait] or [w]: Delays animation for a time.
@@ -255,18 +260,18 @@ func finish():
 
 func _preparse(btext: String) -> String:
 	if signal_quotes:
-		btext = _replace(btext, r'"([^"]*)"', func(strings):
+		btext = _replace(btext, REGEX_SIGNAL_QUOTES, func(strings):
 			var a = strings[0]
 			return "\"[quote %s]%s[]\"" % [a, unwrap(a, '""')])
 	
 	if signal_stars:
-		btext = _replace(btext, r'\*([^*]+)\*', func(strings):
+		btext = _replace(btext, REGEX_SIGNAL_STARS, func(strings):
 			var a = strings[0]
 			return "[stars %s]*%s*[]" % [unwrap(a, "**"), unwrap(a, "**")])
 	
 	# Converts <code pattern> into [$code pattern].
 	if shortcut_expression:
-		btext = _replace(btext, r"<([^>]+)>", func(strings):
+		btext = _replace(btext, REGEX_CODE_PATTERN, func(strings):
 			var a = strings[0]
 			if a.begins_with("<<"):
 				return a.replace("<<", "<")
@@ -274,7 +279,7 @@ func _preparse(btext: String) -> String:
 	
 	# Converts #bookmark into [#bookmark].
 	if shortcut_bookmark:
-		btext = _replace(btext, r"(?<!#)(?<!\[)#\w*[^_\W](?!\])", func(strings):
+		btext = _replace(btext, REGEX_BOOKMARK, func(strings):
 			return "[%s]" % strings[0])
 		btext = btext.replace("##", "#")
 	

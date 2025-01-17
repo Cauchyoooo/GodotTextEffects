@@ -1,5 +1,5 @@
 # RichTextLabel2
-`v1.8` [Demo](https://github.com/chairfull/GodotRichTextLabel2_Demo)
+`v1.10` [Demo](https://github.com/chairfull/GodotRichTextLabel2_Demo)
 
 Two Nodes:
 - `RicherTextLabel`: Reduce effort needed to display state data and stylize it.
@@ -40,8 +40,9 @@ https://github.com/user-attachments/assets/caf703ad-44d3-43b0-b4f9-56f513ac572f
 - Many more I can't rememember... there are a lot of features.
 
 > [!NOTE]
-> If fonts aren't showing up in the font drop down, clear `font_cache`.
-> The entire project is scanned for fonts to display in the dropdown.
+> You need to create a `FontHelper` somewhere in your project.
+> Then press the `Update` button to update it's font list.
+> You can then select fonts from the `RicherTextLabel` drop down.
 
 ![](README/readme1.png)
 ![](README/readme2.png)
@@ -50,8 +51,9 @@ https://github.com/user-attachments/assets/caf703ad-44d3-43b0-b4f9-56f513ac572f
 
 |Tag|Description|Example|
 |:-:|-----------|:--:|
-|`!` `meta`|Executes an expression on the context node when pressed.<br>If it starts with `https://` it will load a browser.|`[!print("Hey!")]`|
+|`@` `meta`|Executes an expression on the context node when pressed.<br>If it starts with `https://` it will load a browser.|`[@print("Hey!")]`|
 |`^` `hint`|Expression that becomes a hint popup.|`[^sword.get_hover_text()]`|
+|`!`|Image id. Doesn't require extension.|`My icon: [!icon]`|
 |`dim`|Dims color by 33%.||
 |`lit`|Lightens color by 33%.|
 |`hue`|Shifts hue. 0 or 1 = no change. 0.5 = opposite end of spectrum.|`[hue 0.25]`|
@@ -190,6 +192,16 @@ func mood(s: String, npc_id: String):
 
 
 # Changes
+- 1.10
+	- **Breaking:** Changed meta symbol to `@` instead of `!`.
+	- Added `[!image]` tag for adding images.
+	- Fixed fonts being reset in exported projects.
+	- Made `FontHelper` a resource you need to create.
+	- Updated to 4.4 by removing `fit_width` reference.
+- 1.9
+	- Added hack to improve editor instancing speed by disabling `_get_property_list()` when `show_properties = false`.
+	- Cached Regex patterns.
+	- Removed `fit_width` and `fit_width_buffer` since `fit_content` works if `autowrap_mode = off`.
 - 1.8
 	- Fixed support for built in effects: `pulse` `wave` `tornado` `shake` `fade` `rainbow`
 	- Removed Godot 4.4.dev feature: `PROPERTY_HINT_DICTIONARY_TYPE`
