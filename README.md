@@ -192,6 +192,14 @@ func mood(s: String, npc_id: String):
 
 
 # Changes
+- 1.11
+	- Removed Godot 4.4 feature `export_tool_button` in `FontHelper`.
+	- **Breaking:** Godot 4.4 added an `is_finished()` function which conflicted with this asset so changed...
+		- `is_finished()` -> `is_anim_finished()`
+		- `is_holding()` -> `is_anim_holding()`
+		- `is_waiting()` -> `is_anim_waiting()`
+		- `finish()` -> `finish_anim()`
+	- Fixed edge case where `FontHelper` being deleted & recreated wouldn't work.
 - 1.10
 	- **Breaking:** Changed meta symbol to `@` instead of `!`.
 	- Added `[!image]` tag for adding images.
