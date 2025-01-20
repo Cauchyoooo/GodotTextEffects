@@ -199,7 +199,6 @@ func mood(s: String, npc_id: String):
 		- `is_holding()` -> `is_anim_holding()`
 		- `is_waiting()` -> `is_anim_waiting()`
 		- `finish()` -> `finish_anim()`
-	- Fixed edge case where `FontHelper` being deleted & recreated wouldn't work.
 - 1.10
 	- **Breaking:** Changed meta symbol to `@` instead of `!`.
 	- Added `[!image]` tag for adding images.

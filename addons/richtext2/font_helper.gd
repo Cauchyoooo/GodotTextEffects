@@ -23,12 +23,13 @@ const FONT_HELPER_PATH := "res://font_helper.tres"
 static var _ref: FontHelper
 static var ref: FontHelper:
 	get:
-		_ref = load(FONT_HELPER_PATH)
 		if not _ref:
-			push_warning("[RicherTextLabel] No FontHelper found. Creating one at %s." % [FONT_HELPER_PATH])
-			ResourceSaver.save(FontHelper.new(), FONT_HELPER_PATH)
 			_ref = load(FONT_HELPER_PATH)
-			update_cached_fonts()
+			if not _ref:
+				push_warning("[RicherTextLabel] No FontHelper found. Creating one at %s." % [FONT_HELPER_PATH])
+				ResourceSaver.save(FontHelper.new(), FONT_HELPER_PATH)
+				_ref = load(FONT_HELPER_PATH)
+				update_cached_fonts()
 		return _ref
 
 ## Update the list of fonts.
