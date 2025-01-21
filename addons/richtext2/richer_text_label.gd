@@ -267,10 +267,6 @@ var image_scale := 1.0:
 		image_scale = s
 		_redraw()
 
-## Use the "res://richtext_tags.cfg" for color replacements.
-var config_enabled := true
-static var _config: ConfigFile
-
 ## Override so bbcode_enabled = true at init.
 var override_bbcodeEnabled := true:
 	set(b):
@@ -335,7 +331,6 @@ func _set_bbcode():
 		custom_effects.pop_back()
 	_meta.clear()
 	STACK_STATE.reset(self)
-	_config = null # Force config file to be reloaded.
 	
 	push_paragraph(alignment)
 	
@@ -672,15 +667,10 @@ func get_expression(ex: String, state2 := {}) -> Variant:
 
 func _parse_tag(tag: String):
 	# Config overrides.
-	if config_enabled and FileAccess.file_exists("res://richtext_tags.cfg"):
-		if not _config:
-			_config = ConfigFile.new()
-			var err := _config.load("res://richtext_tags.cfg")
-		
-		# Colors.
-		var colors := _config.get_section_keys("colors")
+	if ProjectSettings.has_setting("richer_text_label/colors"):
+		var colors: Dictionary = ProjectSettings.get("richer_text_label/colors")
 		if tag in colors:
-			tag = str(_config.get_value("colors", tag))
+			tag = str(colors.get(tag))
 	
 	# COLOR. This allows doing: "[%s]Text[]" % Color.RED
 	if is_wrapped(tag, "()"):
@@ -1185,9 +1175,6 @@ func _get_property_list():
 	_prop(props, &"override_bbcodeEnabled", TYPE_BOOL)
 	_prop(props, &"override_clipContents", TYPE_BOOL)
 	_prop(props, &"override_fitContent", TYPE_BOOL)
-	
-	_prop_group(props, "Config", "config_")
-	_prop(props, &"config_enabled", TYPE_BOOL)
 	
 	return props
 

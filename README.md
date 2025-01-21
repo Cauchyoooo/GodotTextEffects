@@ -90,15 +90,7 @@ There are multiple color tag patterns.
 |`[0xff0000]`|Hex Codes will be converted to their color.|`[0xff0000]Red text.[]`|
 |`[(1.0, 0.0, 0.0)]`|Bracketed floats. This is meant to be used with string formatting.|`"[%s]Red text.[][%s] Blue text.[]" % [Color.RED, Color(0.0, 0.2, 1.0)]"`|
 
-You can also create a `res://richtext_tags.cfg` to include color overrides.
-
-```
-#res://richtext_tags.cfg
-[colors]
-red="(0.6, 0.3, 0.2)"
-blue="0x90d5ff"
-green="adebb3"
-```
+You can override colors in `ProjectSettings` at `"richer_text_label/colors"`. Keys are tags to replace and values are what to use instead.
 
 # RichTextAnimation
 
@@ -215,6 +207,7 @@ func mood(s: String, npc_id: String):
 # Changes
 - 1.13
 	- Major change to FontHelper, it now add a font list to ProjectSettings when you enable the plugin.
+	- Moved overriding color tags to ProjectSettings instead of a config file.
 - 1.12
 	- Added hex color tag pattern: `[0xff0000]red[]`.
 	- Added ability to override colors and add own with `res://richtext_tags.cfg`.
