@@ -1,5 +1,5 @@
 # RichTextLabel2
-`v1.12` [Demo](https://github.com/chairfull/GodotRichTextLabel2_Demo)
+`v1.13` [Demo](https://github.com/chairfull/GodotRichTextLabel2_Demo)
 
 Two Nodes:
 - `RicherTextLabel`: Reduce effort needed to display state data and stylize it.
@@ -143,6 +143,9 @@ He told me#quote the haunted forest#endquote wasn't so haunted.#end
 He told me[#quote] the haunted forest[#endquote] wasn't so haunted.[#end]
 ```
 
+# Fonts
+When you enable the plugin, it scans your projects file system for fonts, adding them to `richer_text_label/fonts` which are then accessible in the `font` drop down.
+
 # Emoji Fonts
 If a font has "emoji" (any case) in it's name, it will be used for emojis instead of the default font.
 
@@ -210,6 +213,8 @@ func mood(s: String, npc_id: String):
 
 
 # Changes
+- 1.13
+	- Major change to FontHelper, it now add a font list to ProjectSettings when you enable the plugin.
 - 1.12
 	- Added hex color tag pattern: `[0xff0000]red[]`.
 	- Added ability to override colors and add own with `res://richtext_tags.cfg`.

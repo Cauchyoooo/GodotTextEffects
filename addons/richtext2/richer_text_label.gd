@@ -434,7 +434,7 @@ func set_font(id: String):
 
 func _update_subfonts():
 	if font_auto_setup:
-		FontHelper.set_fonts(self, font, font_bold_weight, font_italics_slant, font_italics_weight, FontHelper.ref.fonts)
+		FontHelper.set_fonts(self, font, font_bold_weight, font_italics_slant, font_italics_weight, FontHelper._get_fonts())
 
 func get_normal_font() -> Font:
 	return get_theme_font(&"normal_font")
@@ -1114,7 +1114,7 @@ func _get_property_list():
 	_prop(props, &"emoji_scale", TYPE_FLOAT)
 	
 	_prop_group(props, "Font", "font_")
-	var fonts := "," + ",".join(FontHelper.ref.fonts.keys())
+	var fonts := "," + ",".join(FontHelper._get_fonts().keys())
 	_prop(props, &"font", TYPE_STRING, PROPERTY_HINT_ENUM_SUGGESTION, fonts)
 	_prop(props, &"font_auto_setup", TYPE_BOOL)
 	_prop(props, &"font_size", TYPE_INT)
