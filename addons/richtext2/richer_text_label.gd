@@ -267,6 +267,10 @@ var image_scale := 1.0:
 		image_scale = s
 		_redraw()
 
+## Use the "res://richtext_tags.cfg" for color replacements.
+var config_enabled := true
+static var _config: ConfigFile
+
 ## Override so bbcode_enabled = true at init.
 var override_bbcodeEnabled := true:
 	set(b):
@@ -331,6 +335,7 @@ func _set_bbcode():
 		custom_effects.pop_back()
 	_meta.clear()
 	STACK_STATE.reset(self)
+	_config = null # Force config file to be reloaded.
 	
 	push_paragraph(alignment)
 	
@@ -666,10 +671,20 @@ func get_expression(ex: String, state2 := {}) -> Variant:
 	return returned
 
 func _parse_tag(tag: String):
+	# Config overrides.
+	if config_enabled and FileAccess.file_exists("res://richtext_tags.cfg"):
+		if not _config:
+			_config = ConfigFile.new()
+			var err := _config.load("res://richtext_tags.cfg")
+		
+		# Colors.
+		var colors := _config.get_section_keys("colors")
+		if tag in colors:
+			tag = str(_config.get_value("colors", tag))
+	
 	# COLOR. This allows doing: "[%s]Text[]" % Color.RED
 	if is_wrapped(tag, "()"):
-		var rgba = unwrap(tag, "()").split_floats(",")
-		_push_color(Color(rgba[0], rgba[1], rgba[2], rgba[3]))
+		_push_color(to_color(tag))
 		return
 	
 	# Pipe. TODO
@@ -690,6 +705,12 @@ func _parse_tag(tag: String):
 	# Image.
 	if tag.begins_with("!"):
 		_push_image(tag)
+		return
+	
+	# Hex color.
+	if tag.begins_with("0x"):
+		var html := tag.trim_prefix("0x")
+		_push_color(to_color(html))
 		return
 	
 	var tag_name: String
@@ -1165,6 +1186,9 @@ func _get_property_list():
 	_prop(props, &"override_clipContents", TYPE_BOOL)
 	_prop(props, &"override_fitContent", TYPE_BOOL)
 	
+	_prop_group(props, "Config", "config_")
+	_prop(props, &"config_enabled", TYPE_BOOL)
+	
 	return props
 
 func _property_can_revert(property: StringName) -> bool:
@@ -1234,7 +1258,10 @@ static func to_color(s: String, default: Variant = Color.WHITE) -> Variant:
 			s = unwrap(s, "()")
 		# floats?
 		var floats := s.split_floats(",")
-		return Color(floats[0], floats[1], floats[2], 1.0)
+		match len(floats):
+			4: return Color(floats[0], floats[1], floats[2], floats[3])
+			3: return Color(floats[0], floats[1], floats[2], 1.0)
+			_: push_error("Strange color given: %s." % [s])
 #	push_error("Can't convert '%s' to color." % s)
 	return default
 

@@ -82,6 +82,24 @@ https://github.com/user-attachments/assets/caf703ad-44d3-43b0-b4f9-56f513ac572f
 |`fade`|[Built in](https://docs.godotengine.org/en/stable/tutorials/ui/bbcode_in_richtextlabel.html#fade)||
 |`rainbow`|[Built in](https://docs.godotengine.org/en/stable/tutorials/ui/bbcode_in_richtextlabel.html#rainbow)||
 
+## Colors
+There are multiple color tag patterns.
+|Pattern|Description|Example|
+|-------|-----------|-------|
+|`[red]`|Any name for a builtin color will work as a tag.|`[red]Red text.[]`|
+|`[0xff0000]`|Hex Codes will be converted to their color.|`[0xff0000]Red text.[]`|
+|`[(1.0, 0.0, 0.0)]`|Bracketed floats. This is meant to be used with string formatting.|`"[%s]Red text.[][%s] Blue text.[]" % [Color.RED, Color(0.0, 0.2, 1.0)]"`|
+
+You can also create a `res://richtext_tags.cfg` to include color overrides.
+
+```
+#res://richtext_tags.cfg
+[colors]
+red="(0.6, 0.3, 0.2)"
+blue="0x90d5ff"
+green="adebb3"
+```
+
 # RichTextAnimation
 
 This node is meant for dialogue systems and cinematics.
@@ -192,6 +210,12 @@ func mood(s: String, npc_id: String):
 
 
 # Changes
+- 1.12
+	- Added hex color tag pattern: `[0xff0000]red[]`.
+	- Added ability to override colors and add own with `res://richtext_tags.cfg`.
+	- Updated README.md to explain `res://richtext_tags.cfg`.
+	- Fixed bracket color pattern not using alpha channel.
+	- Fixed bracket color pattern erroring when only RGB was given.
 - 1.11
 	- Removed Godot 4.4 feature `export_tool_button` in `FontHelper`.
 	- **Breaking:** Godot 4.4 added an `is_finished()` function which conflicted with this asset so changed...
