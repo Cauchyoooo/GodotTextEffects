@@ -670,7 +670,12 @@ func _parse_tag(tag: String):
 	if ProjectSettings.has_setting("richer_text_label/colors"):
 		var colors: Dictionary = ProjectSettings.get("richer_text_label/colors")
 		if tag in colors:
-			tag = str(colors.get(tag))
+			var color = colors.get(tag)
+			if typeof(color) == TYPE_COLOR:
+				_push_color(color)
+				return
+			else:
+				tag = str(color)
 	
 	# COLOR. This allows doing: "[%s]Text[]" % Color.RED
 	if is_wrapped(tag, "()"):

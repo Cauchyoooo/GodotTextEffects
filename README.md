@@ -1,5 +1,5 @@
 # RichTextLabel2
-`v1.13` [Demo](https://github.com/chairfull/GodotRichTextLabel2_Demo)
+`v1.14` [Demo](https://github.com/chairfull/GodotRichTextLabel2_Demo)
 
 Two Nodes:
 - `RicherTextLabel`: Reduce effort needed to display state data and stylize it.
@@ -205,8 +205,11 @@ func mood(s: String, npc_id: String):
 
 
 # Changes
+- 1.14
+	- If using Godot v4.4+ the ProjectSettings `color` override will be a typed dictionary.
+	- Allows using `Color` in the ProjectSettings `color` override.
 - 1.13
-	- Major change to FontHelper, it now add a font list to ProjectSettings when you enable the plugin.
+	- Major change to FontHelper, it now adds a font list to ProjectSettings when you enable the plugin.
 	- Moved overriding color tags to ProjectSettings instead of a config file.
 - 1.12
 	- Added hex color tag pattern: `[0xff0000]red[]`.
