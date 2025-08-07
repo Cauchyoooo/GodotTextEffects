@@ -205,6 +205,25 @@ func mood(s: String, npc_id: String):
 
 
 # Changes
+- 1.15
+	- Allows floats beginning with a ".": `Normal [.5]half size[]`
+	- Implemented `effect_weight` which can be used for tweening effects on and off.
+		- `[sin]` effects scale.
+		- `[jit]` `[jit2]` effects jitter amount.
+		- `[jump]` `[jump2]` effects jump amount.
+		- `[rain]` effects tint and motion.
+		- `[sparkle]` effects hue and value adjustment scale.
+		- `[sway]` effects sway scale.
+		- `[wack]` effects scaling amount.
+	- Added `speed` property to `[jump]` and `[jump2]`.
+	- Changed `[cuss]` so it only censors vowels.
+	- Changed `[sway]` to be more randomized.
+	- Changed `[wack]` to only modify scale.
+	- `[cuss]` no longer changes font color unless you ask `[cuss=red]`.
+	- Image tag can take a path starting with `res://` or `user://`: `[!user://myimage]`
+	- Added `ProjectSettings` `richer_text_label/user_effects_dir` for having a custom effect directory.
+	- Rewrote some `RichTextEffectBase` so it's easier to work with.
+	- `context_state` auto sets keys to `StringName` if Godot >=4.4.
 - 1.14
 	- If using Godot v4.4+ the ProjectSettings `color` override will be a typed dictionary.
 	- Allows using `Color` in the ProjectSettings `color` override.

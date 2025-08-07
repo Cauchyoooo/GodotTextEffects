@@ -1,8 +1,8 @@
 # Makes words shake around.
 @tool
-extends RichTextEffect
+extends RichTextEffectBase
 
-# Syntax: [jit scale=1.0 freq=8.0][]
+## Syntax: [jit scale=1.0 freq=8.0][]
 var bbcode = "jit"
 
 const SPLITTERS := " .!?,-"
@@ -16,11 +16,10 @@ func _process_custom_fx(c: CharFXTransform):
 		_word = 0
 		_offset = c.glyph_index
 	
-	var scale:float = c.env.get("scale", 2.0)
-	var freq:float = c.env.get("jit", 1.0)
-	var text: String = get_meta("text")
+	var scale: float = c.env.get("scale", 2.0) * weight
+	var freq: float = c.env.get("jit", 1.0)
 	
-	if text[c.range.x] in SPLITTERS or _last in SPLITTERS:
+	if get_char(c) in SPLITTERS or _last in SPLITTERS:
 		_word += PI * .33
 	
 	var t = c.elapsed_time
@@ -29,5 +28,5 @@ func _process_custom_fx(c: CharFXTransform):
 	c.offset.x += sin(s) * p * scale
 	c.offset.y += cos(s) * p * scale
 	
-	_last = text[c.range.x]
+	_last = get_char(c)
 	return true

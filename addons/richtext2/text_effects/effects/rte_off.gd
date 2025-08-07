@@ -5,11 +5,6 @@ extends RichTextEffectBase
 ## Syntax: [off][]
 var bbcode = "off"
 
-func to_float(s: String):
-	if s.begins_with("."):
-		return ("0" + s).to_float()
-	return s.to_float()
-
 func _process_custom_fx(c:CharFXTransform):
 	var off = c.env.get("off", Vector2.ZERO)
 	match typeof(off):

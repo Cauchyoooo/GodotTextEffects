@@ -6,7 +6,7 @@ extends RichTextEffectBase
 var bbcode = "fromcursor"
 
 func _process_custom_fx(c: CharFXTransform):
-	var delta := get_animation_delta(c)
+	var delta := get_char_delta(c)
 	# Send position back early so ctc isn't weird.
 	send_back_transform(c)
 	c.color.a *= delta

@@ -8,6 +8,13 @@ func _enter_tree() -> void:
 	ProjectSettings.set("richer_text_label/fonts", fonts)
 	ProjectSettings.add_property_info({ "name": "richer_text_label/fonts", "type": TYPE_DICTIONARY })
 	
+	if not ProjectSettings.has_setting("richer_text_label/user_effects_dir"):
+		ProjectSettings.set("richer_text_label/user_effects_dir", "res://assets/text_effects")
+		ProjectSettings.add_property_info({
+			"name": "richer_text_label/user_effects_dir",
+			"type": TYPE_STRING,
+		})
+	
 	if not ProjectSettings.has_setting("richer_text_label/colors"):
 		ProjectSettings.set("richer_text_label/colors", {})
 		if Engine.get_version_info().hex >= 0x040400:

@@ -219,8 +219,8 @@ var markdown_format_italics2 := "[i;gray]*%s*[]" ## *italic*
 var markdown_format_bold2 := "[b]*%s*[]" ## **bold**
 var markdown_format_bold_italics2 := "%s" ## ***bold italic***
 
-## TODO: RichTextEffects will use this to scale all their animations together.
-var effect_weight := 0.0
+## Effects scale against this. Useful for tweening transitions.
+var effect_weight := 1.0
 
 ## Will replace $properties in text.
 ## Can be a function: "I have $player.item_count("coins") coins."
@@ -730,7 +730,7 @@ func _parse_tag(tag: String):
 
 func _parse_tag_info(tag: String, info: String, raw: String):
 	# Font sizes.
-	if len(tag) and tag[0].is_valid_int():
+	if len(tag) and (tag[0].is_valid_int() or tag[0].begins_with(".")):
 		_push_font_size(int(STACK_STATE.font_size * _number(tag)))
 		return
 	
@@ -888,8 +888,10 @@ func _pop_pipe():
 func _push_image(tag: String):
 	_stack_push(T_IMAGE)
 	var img_name := tag.trim_prefix("!")
+	if not img_name.begins_with("res://") and not img_name.begins_with("user://"):
+		img_name = image_path.path_join(img_name)
 	for ext in IMAGE_EXTENSIONS:
-		var full_path := image_path.path_join(img_name) + ext
+		var full_path := img_name + ext
 		if FileAccess.file_exists(full_path):
 			var tex: Texture2D = load(full_path)
 			var wide := tex.get_width()
@@ -1056,7 +1058,9 @@ func _has_effect(id:String) -> bool:
 		if e.resource_name == id:
 			return true
 	
-	for dir in [DIR_TEXT_EFFECTS, DIR_TEXT_TRANSITIONS]:
+	for dir in [DIR_TEXT_EFFECTS, DIR_TEXT_TRANSITIONS, ProjectSettings.get("richer_text_label/user_effects_dir")]:
+		if not dir:
+			continue
 		for ext in ["gd", "gdc"]:
 			var path = dir.path_join("rte_%s.%s" % [id, ext])
 			if FileAccess.file_exists(path):
@@ -1085,7 +1089,9 @@ func _install_effect(id: String) -> bool:
 		if e.resource_name == id:
 			return true
 	
-	for dir in [DIR_TEXT_EFFECTS, DIR_TEXT_TRANSITIONS]:
+	for dir in [DIR_TEXT_EFFECTS, DIR_TEXT_TRANSITIONS, ProjectSettings.get("richer_text_label/user_effects_dir")]:
+		if not dir:
+			continue
 		for ext in ["gd", "gdc"]:
 			var path: String = dir.path_join("rte_%s.%s" % [id, ext])
 			if FileAccess.file_exists(path):
@@ -1150,9 +1156,11 @@ func _get_property_list():
 	_prop_group(props, "Context", "context_")
 	_prop(props, &"context_enabled", TYPE_BOOL)
 	_prop(props, &"context_path", TYPE_NODE_PATH)
-	# TODO: Godot 4.4
-	#_prop(props, &"context_state", TYPE_DICTIONARY, PROPERTY_HINT_DICTIONARY_TYPE, "StringName;Variant")
-	_prop(props, &"context_state", TYPE_DICTIONARY)
+	if Engine.get_version_info().hex >= 0x040400:
+		# PROPERTY_HINT_DICTIONARY_TYPE = 38
+		_prop(props, &"context_state", TYPE_DICTIONARY, 38, "StringName;Variant")
+	else:
+		_prop(props, &"context_state", TYPE_DICTIONARY)
 	_prop(props, &"context_rich_objects", TYPE_BOOL)
 	_prop(props, &"context_rich_ints", TYPE_BOOL)
 	_prop(props, &"context_rich_array", TYPE_BOOL)

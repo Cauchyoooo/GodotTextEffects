@@ -10,16 +10,15 @@ const CUSS_CHARS := "&$!@*#%"
 const IGNORE := " !?.,;\""
 
 func _process_custom_fx(c: CharFXTransform):
+	var txt := text
+	var clr_name: String = c.env.get("cuss", "")
+	var clr := RicherTextLabel.to_color(clr_name, c.color) if clr_name else c.color
+	
 	# Never censor first letter.
 	if c.relative_index != 0:
 		# Always censor vowels.
 		if get_char(c) in VOWELS:
 			set_char(c, CUSS_CHARS[int(rand_anim(c, 5.0, len(CUSS_CHARS)))])
-			c.color = Color.RED
-		# Don't censor last letter.
-		elif c.range.x + 1 < len(get_text()) and not get_text()[c.range.x + 1] in IGNORE:
-			# Sometimes censor other letters.
-			if rand_anim(c) > 0.75:
-				set_char(c, CUSS_CHARS[int(rand_anim(c, 5.0, len(CUSS_CHARS)))])
-				c.color = Color.RED
+			c.color = clr
+	
 	return true

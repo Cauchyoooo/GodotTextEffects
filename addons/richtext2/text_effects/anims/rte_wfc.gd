@@ -9,7 +9,7 @@ const SPACE := " "
 const SYMBOLS := "10"
 
 func _process_custom_fx(c: CharFXTransform):
-	var a := get_animation_delta(c)
+	var a := get_char_delta(c)
 	
 	if is_animation_fading_out():
 		var aa = a + rand2(c) * a

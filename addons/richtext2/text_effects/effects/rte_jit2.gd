@@ -6,8 +6,8 @@ extends RichTextEffectBase
 var bbcode = "jit2"
 
 func _process_custom_fx(c: CharFXTransform):
-	var scale:float = c.env.get("scale", 1.0)
-	var freq:float = c.env.get("freq", 16.0)
+	var scale: float = c.env.get("scale", 1.0) * weight
+	var freq: float = c.env.get("freq", 16.0)
 	
 	var t = c.elapsed_time
 	var s = fmod((c.relative_index + t) * PI * 1.25, TAU)

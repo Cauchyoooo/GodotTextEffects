@@ -9,7 +9,7 @@ const BLOCK := "█"
 const MID_BLOCK := "▓"
 
 func _process_custom_fx(c: CharFXTransform):
-	var a := get_animation_delta(c)
+	var a := get_char_delta(c)
 	
 	if is_animation_fading_out():
 		c.color.a = a

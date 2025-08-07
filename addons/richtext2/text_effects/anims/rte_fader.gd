@@ -6,6 +6,6 @@ extends RichTextEffectBase
 var bbcode = "fader"
 
 func _process_custom_fx(c: CharFXTransform):
-	c.color.a *= get_animation_delta(c)
+	c.color.a *= get_char_delta(c)
 	send_back_transform(c)
 	return true

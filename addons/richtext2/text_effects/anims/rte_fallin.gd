@@ -6,7 +6,7 @@ extends RichTextEffectBase
 var bbcode = "fallin"
 
 func _process_custom_fx(c: CharFXTransform):
-	var delta: float = ease_back_out(get_animation_delta(c))
+	var delta: float = ease_back_out(get_char_delta(c))
 	c.color.a *= delta
 	var cs := get_char_size(c) * Vector2(0.5, -0.25)
 	c.transform *= Transform2D.IDENTITY.translated(cs)

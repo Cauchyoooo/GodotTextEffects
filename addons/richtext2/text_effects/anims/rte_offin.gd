@@ -6,7 +6,7 @@ extends RichTextEffectBase
 var bbcode = "offin"
 
 func _process_custom_fx(c: CharFXTransform):
-	var delta: float = get_animation_delta(c)
+	var delta: float = get_char_delta(c)
 	c.color.a *= delta
 	c.offset.x = -get_char_size(c).x * (1.0 - delta)
 	send_back_transform(c)
