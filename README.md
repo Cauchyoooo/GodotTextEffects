@@ -1,5 +1,5 @@
 # RichTextLabel2
-`v1.14` [Demo](https://github.com/chairfull/GodotRichTextLabel2_Demo)
+`v1.15` [Demo](https://github.com/chairfull/GodotRichTextLabel2_Demo)
 
 Two Nodes:
 - `RicherTextLabel`: Reduce effort needed to display state data and stylize it.
