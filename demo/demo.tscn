@@ -1,0 +1,768 @@
+[gd_scene load_steps=56 format=3 uid="uid://dnmrjaw4dqj0n"]
+
+[ext_resource type="Script" uid="uid://d32fx6gxcuwd8" path="res://demo/StateTest.gd" id="1_gcdme"]
+[ext_resource type="Script" uid="uid://dhbxvg36y8pfd" path="res://addons/richtext2/text_effects/effects/rte_curspull.gd" id="2_nemen"]
+[ext_resource type="Script" uid="uid://2f4fi75scxes" path="res://addons/richtext2/richer_text_label.gd" id="2_rb8wy"]
+[ext_resource type="Script" uid="uid://b8k6548xtwyv6" path="res://addons/richtext2/text_effects/effects/rte_wack.gd" id="3_ap4tq"]
+[ext_resource type="Script" uid="uid://4mittkdxo7ig" path="res://addons/richtext2/text_effects/effects/rte_cuss.gd" id="4_dki1o"]
+[ext_resource type="Script" uid="uid://b61hhau76ckc3" path="res://addons/richtext2/text_effects/effects/rte_heart.gd" id="5_c3c3g"]
+[ext_resource type="Script" uid="uid://i8bg2nawwnn0" path="res://addons/richtext2/text_effects/effects/rte_sin.gd" id="7_nlfp7"]
+[ext_resource type="Script" uid="uid://dof0tkhyta031" path="res://addons/richtext2/text_effects/effects/rte_jit.gd" id="7_vkopi"]
+[ext_resource type="Script" uid="uid://beh7kaa580cli" path="res://addons/richtext2/text_effects/effects/rte_woo.gd" id="8_xdtib"]
+[ext_resource type="Script" uid="uid://dvu837eubxi58" path="res://addons/richtext2/text_effects/effects/rte_l33t.gd" id="9_oadsm"]
+[ext_resource type="Script" uid="uid://du1v6l7e8xn30" path="res://addons/richtext2/text_effects/effects/rte_rain.gd" id="10_02n11"]
+[ext_resource type="Script" uid="uid://b3g6d7e17ptwi" path="res://addons/richtext2/text_effects/effects/rte_uwu.gd" id="10_hkcha"]
+[ext_resource type="Script" uid="uid://b6mbstaftpedd" path="res://addons/richtext2/rich_text_animation.gd" id="12_gp4ab"]
+[ext_resource type="Script" uid="uid://diw5njl7cgqi5" path="res://addons/richtext2/text_effects/effects/rte_sparkle.gd" id="13_p27uj"]
+[ext_resource type="Texture2D" uid="uid://cw55kw3xoffy3" path="res://icon.svg" id="13_vk23b"]
+[ext_resource type="Script" uid="uid://chajnt1ckbj20" path="res://addons/richtext2/text_effects/effects/rte_sway.gd" id="14_d0nx2"]
+[ext_resource type="Script" uid="uid://cyjawoc1rasem" path="res://demo/camera.gd" id="15_88m0k"]
+[ext_resource type="Script" uid="uid://bpyl8k1xiji6g" path="res://addons/richtext2/text_effects/effects/rte_beat.gd" id="17_wor61"]
+[ext_resource type="Script" uid="uid://cl5er6rj6dis2" path="res://addons/richtext2/text_effects/effects/rte_secret.gd" id="18_itsyx"]
+[ext_resource type="Script" uid="uid://d16jnf3xho2be" path="res://addons/richtext2/text_effects/anims/rte_prickle.gd" id="18_m0cf3"]
+[ext_resource type="Script" uid="uid://de4o4demcpr3j" path="res://addons/richtext2/text_effects/effects/rte_jump.gd" id="18_qvfii"]
+[ext_resource type="Script" uid="uid://dxo4k87bu2ahe" path="res://addons/richtext2/text_effects/effects/rte_ghost.gd" id="19_6ihnu"]
+[ext_resource type="Script" uid="uid://cx1c7col64bdd" path="res://addons/richtext2/text_effects/effects/rte_matrix.gd" id="20_mosls"]
+[ext_resource type="Script" uid="uid://bvsul0lp024ji" path="res://addons/richtext2/text_effects/effects/rte_glitch.gd" id="21_mosls"]
+[ext_resource type="Script" uid="uid://c4e4s36wlbhsf" path="res://addons/richtext2/text_effects/effects/rte_cursup.gd" id="22_p1aj5"]
+[ext_resource type="Script" uid="uid://b2n1urx18sywd" path="res://addons/richtext2/text_effects/effects/rte_curscolor.gd" id="23_1d2gs"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_t8a6q"]
+resource_name = "sin"
+script = ExtResource("7_nlfp7")
+metadata/rt = 2418687427242
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_mosls"]
+resource_name = "cuss"
+script = ExtResource("4_dki1o")
+metadata/rt = 2423552820161
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_p1aj5"]
+resource_name = "heart"
+script = ExtResource("5_c3c3g")
+metadata/rt = 2423552820161
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_1d2gs"]
+resource_name = "jit"
+script = ExtResource("7_vkopi")
+metadata/rt = 2423552820161
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_jv588"]
+resource_name = "jump"
+script = ExtResource("18_qvfii")
+metadata/rt = 2423552820161
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_xam2y"]
+resource_name = "sin"
+script = ExtResource("7_nlfp7")
+metadata/rt = 2423552820161
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_fla3q"]
+resource_name = "woo"
+script = ExtResource("8_xdtib")
+metadata/rt = 2423552820161
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_a0ng0"]
+resource_name = "uwu"
+script = ExtResource("10_hkcha")
+metadata/rt = 2423552820161
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_7h7tp"]
+resource_name = "l33t"
+script = ExtResource("9_oadsm")
+metadata/rt = 2423552820161
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_143ej"]
+resource_name = "rain"
+script = ExtResource("10_02n11")
+metadata/rt = 2423552820161
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_u5t42"]
+resource_name = "curspull"
+script = ExtResource("2_nemen")
+metadata/rt = 2423552820161
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_5de16"]
+resource_name = "sparkle"
+script = ExtResource("13_p27uj")
+metadata/rt = 2423552820161
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_h5sl1"]
+resource_name = "sway"
+script = ExtResource("14_d0nx2")
+metadata/rt = 2423552820161
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_norpd"]
+resource_name = "wack"
+script = ExtResource("3_ap4tq")
+metadata/rt = 2423552820161
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_7eb7w"]
+resource_name = "beat"
+script = ExtResource("17_wor61")
+metadata/rt = 2423552820161
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ntps4"]
+resource_name = "secret"
+script = ExtResource("18_itsyx")
+metadata/rt = 2423552820161
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ha3dm"]
+resource_name = "ghost"
+script = ExtResource("19_6ihnu")
+metadata/rt = 2423552820161
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_5t1n4"]
+resource_name = "matrix"
+script = ExtResource("20_mosls")
+metadata/rt = 2423552820161
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_f73r4"]
+resource_name = "glitch"
+script = ExtResource("21_mosls")
+metadata/rt = 2423552820161
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_hycpn"]
+resource_name = "cursup"
+script = ExtResource("22_p1aj5")
+metadata/rt = 2423552820161
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_mj7pe"]
+resource_name = "curscolor"
+script = ExtResource("23_1d2gs")
+metadata/rt = 2423552820161
+
+[sub_resource type="Animation" id="Animation_u8swk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%talker:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(220, -5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%talker:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%talker:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_yj1ml"]
+resource_name = "hop"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%talker:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 0.329877, 2.14355),
+"update": 0,
+"values": [Vector2(220, -5), Vector2(220, -32), Vector2(220, -5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%talker:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(2, 2, 2, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%talker:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.166667, 0.233333, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, -0.261799, 0.261799, 0.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q83f8"]
+_data = {
+&"RESET": SubResource("Animation_u8swk"),
+&"hop": SubResource("Animation_yj1ml")
+}
+
+[sub_resource type="Animation" id="Animation_m07y7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(124, -11)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_moq4u"]
+resource_name = "stars"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.233258, 0.101531),
+"update": 0,
+"values": [Vector2(124, -11), Vector2(124, -30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.261799]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lx584"]
+_data = {
+&"RESET": SubResource("Animation_m07y7"),
+&"stars": SubResource("Animation_moq4u")
+}
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_urb6m"]
+resource_name = "prickle"
+script = ExtResource("18_m0cf3")
+metadata/rt = 2428753757149
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jpag3"]
+noise_type = 3
+frequency = 0.0124
+
+[node name="State" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gcdme")
+metadata/movie_file = "res://movie/movie.avi"
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 1
+
+[node name="default" type="CenterContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="TabContainer/default"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/default/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="TabContainer/default/PanelContainer/MarginContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(800, 350)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25)
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/bold_italics_font_size = 25
+theme_override_font_sizes/italics_font_size = 25
+theme_override_font_sizes/mono_font_size = 25
+theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/bold_font_size = 25
+bbcode_enabled = true
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_t8a6q")]
+script = ExtResource("2_rb8wy")
+bbcode = "_Greetings $player.name_.
+I'll sell this $helmet for $$big_number coins.
+You'll need *cough-cough* ~guts of steel~ to win.
+Fruit: ~:apple: :pear: :banana:~
+Adding $score to 21 gets $add_numbers(score, 21).
+Array: $get_items().
+Expression: {lerp(score, 2, 0.2) * PI}...
+Escapeds [[b].
+Pipe: {\"lowercase\"|cap}
+PipeTag: [|ooify]tomorrow[]."
+effects = 2
+alignment = 1
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.2
+font = ""
+font_auto_setup = true
+font_size = 25
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = true
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 8
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("../../../../..")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 1.0
+image_path = "res://"
+image_resize_to_font_size = true
+image_scale = 1.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+
+[node name="effects" type="CenterContainer" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="TabContainer/effects"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/effects/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="rt_effects" type="RichTextLabel" parent="TabContainer/effects/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+clip_contents = false
+custom_minimum_size = Vector2(600, 462)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25)
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+bbcode_enabled = true
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_mosls"), SubResource("RichTextEffect_p1aj5"), SubResource("RichTextEffect_1d2gs"), SubResource("RichTextEffect_jv588"), SubResource("RichTextEffect_xam2y"), SubResource("RichTextEffect_fla3q"), SubResource("RichTextEffect_a0ng0"), SubResource("RichTextEffect_7h7tp"), SubResource("RichTextEffect_143ej"), SubResource("RichTextEffect_u5t42"), SubResource("RichTextEffect_5de16"), SubResource("RichTextEffect_h5sl1"), SubResource("RichTextEffect_norpd"), SubResource("RichTextEffect_7eb7w"), SubResource("RichTextEffect_ntps4"), SubResource("RichTextEffect_ha3dm"), SubResource("RichTextEffect_5t1n4"), SubResource("RichTextEffect_f73r4"), SubResource("RichTextEffect_hycpn"), SubResource("RichTextEffect_mj7pe")]
+script = ExtResource("2_rb8wy")
+bbcode = "_cuss:_ What the [cuss=red]heck[] are you [cuss=red]fuckers[] saying?.
+_heart:_ [heart]I love you so much[].
+_jit:_ [jit scale=1.5 freq=1.0 word=true]Hello world.[] [jit scale=1.5 freq=10.0 word=false]Hello world.[]
+_jump:_ [jump word=true speed=8]Hello world.[] [jump angle=0 word=false speed=6]Hello world.[] 
+_sin:_ [sin]We on a sin wave. Hello world.[]
+_woo:_ You were all \"[woo]Noo don't do it.[]\"
+_uwu:_ [uwu]I'm really trying my hardest.[]
+_l33t:_ [l33t]Must have genius IQ to read.[]
+_rain:_ [rain]Rain rain go away...[]
+_curspull:_ [curspull]Pulls towards the cursor.[]
+_curspull -1:_ [curspull pull=-1.0]Pulls away from the cursor.[]
+_sparkle:_ [sparkle][deep_sky_blue]This[] [orange]text[] [salmon]sparkles[].[]
+_sway:_ [sway]This text sways.[]
+_wack:_ [wack]Welcome to the world![]
+_beat:_ [beat]This text pulses [red]red[] and [deep_sky_blue]blue[].[]
+_secret:_ [secret]Only visible when cursor is nearbye.[]
+_ghost:_ [ghost freq=8 span=10 intensity=1.2]Boo! Boo![]
+_matrix:_ [matrix clean=3.0 dirty=1.0 span=50]what the hell is this?[]
+_glitch:_ [glitch intensity=1.0 freq=8 color=true]Glitchy[]
+_cursup:_ [cursup scale=1.2 ]It can highlight some chars.[]
+_curscolor:_ [curscolor intensity=1.0]It can highlight some chars.[]
+"
+effects = 2
+alignment = 1
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = "RobotoMono-VariableFont_wght"
+font_auto_setup = true
+font_size = 16
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = true
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 4
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("../../../../..")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[yellow_green;i]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 1.0
+image_path = "res://"
+image_resize_to_font_size = true
+image_scale = 1.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+metadata/fonts = {
+"NotoColorEmoji": "res://demo/fonts/NotoColorEmoji-Regular.ttf",
+"RobotoMono-VariableFont_wght": "res://demo/fonts/RobotoMono-VariableFont_wght.ttf",
+"emoji_font": "res://demo/fonts/emoji_font.tres"
+}
+metadata/mouse_position = Vector2(314, -37)
+metadata/frame = 393759
+metadata/rand = Array[int]([1242580632, 179909961, 1133416514, 227329818, 288431418, 2217976741, 128653647, 1284548929, 1631612248, 1149130372, 3113700285, 1731682884, 3437873294, 1224278730, 1980938160, 1949256599, 4110575247, 4209042663, 783911815, 1814971667, 1817864538, 828431117, 4150375262, 3916472644, 819536800, 1077741793, 1951583939, 1008138908, 1664852760, 1873459945, 1278704755, 2881884783, 2889760059, 3190496430, 3684791529, 4009834109, 2771891258, 2672788626, 2526027317, 2090701651, 992126550, 793103091, 581488864, 2343784234, 1740582811, 2849050131, 2910861269, 3670848144, 3073141343, 1456740255, 3443820133, 1058560793, 709893989, 762754338, 366207532, 899967047, 811720554, 96335218, 4203976534, 1998593812, 3700571137, 1062562412, 1029721477, 1522043089, 1070068718, 2281229613, 51417308, 1681951485, 65838331, 2066891906, 3070053658, 1500477292, 3684573369, 1661276412, 971725621, 2128547341, 4007494165, 3515708208, 841367270, 1769457136, 1839356014, 863018631, 2337380609, 2522657615, 2802930138, 1777265504, 3741842352, 1990562400, 4071026419, 950602101, 3030513709, 1102706197, 98557116, 1455330469, 955591345, 3412497639, 1450177627, 3417171812, 499222582, 2719424407, 1303126206, 1861229047, 4248014638, 3313833606, 3650637075, 1727826102, 857537947, 3126557790, 4105356510, 2156686764, 180826251, 3782469097, 2761560466, 1336481826, 3572008190, 4140205505, 3219308956, 1401103159, 3834494572, 3132214483, 2202453667, 3372385848, 3191380412, 2192662894, 1684501700, 2341479524, 3155309127, 1348684169, 1573914327, 279646759, 3737339179, 61670971, 508396538, 2083270395, 1719806383, 2556034574, 2503245811, 168244876, 2370895933, 3504957625, 176243600, 3801968701, 2088764714, 1593188708, 3975921607, 2153476333, 325864582, 3796899705, 3276566917, 363090264, 1843485127, 2273572255, 2337686612, 2337275477, 2348170797, 641928956, 475806071, 2545935383, 4022440701, 77117910, 4243173588, 3779366212, 3904307188, 3479039578, 4230202012, 3167517699, 3370509975, 902993465, 3305800406, 2882044370, 1685321549, 2647008598, 4154444356, 532131431, 402249809, 1887398610, 1642487296, 1996405341, 1503036644, 199032746, 339768224, 4171754220, 3154814808, 1632283921, 2581847520, 2368145401, 2983212863, 3138984993, 360143561, 4267777786, 70046759, 1468491581, 2931164281, 1528834105, 17853850, 182796136, 212088378, 2412494420, 3857559272, 905696155, 3983215050, 4189376833, 1741672144, 3266777905, 3953041899, 2312594890, 2220532450, 206203192, 1826720492, 2712428548, 1523772062, 4158421301, 3672866312, 4161527919, 220952045, 2082790764, 1661573307, 4251796178, 1398869641, 61650655, 1281365617, 1713581565, 2092426172, 4036279230, 2811164143, 1930923767, 233322270, 2415716171, 4036364612, 644632702, 3361293103, 2084577130, 4000257214, 3857869850, 1654757655, 1443884320, 647422138, 2505402484, 1071170449, 2227281123, 2034402236, 2113770781, 1682943818, 883331344, 2227866797, 2252124859, 467355972, 1324014243, 4095718316, 326612521, 2644439668, 348449004, 563684990, 1549238552, 3785636530, 3445804917, 2074322486, 565976058, 2593759984, 491612405, 627053862, 423175264, 4106345662, 551908280, 1370937285, 1970006609, 3317774166, 2298209193, 358207080, 1027147379, 2834694077, 4248181321, 1282689545, 647514419, 3216113719, 1741442615, 1589520848, 452794411, 240299944, 1375085182, 29566995, 2979022924, 846534419, 2210503671, 3998257252, 668397184, 3589341028, 2965863785, 1372522649, 3009115936, 4227059861, 3203686269, 3877810813, 1320792091, 982245412, 2386291275, 1495151710, 4224155461, 3103874367, 3141242606, 3885025476, 4018778015, 2769944434, 829967219, 1534028685, 324684628, 957499722, 4165091444, 2304750429, 2407292985, 4092276075, 3704601981, 312599459, 4243729074, 3772613538, 749344491, 471506365, 1640317501, 3185902186, 647163564, 2272971962, 28674154, 4063713174, 2912792202, 3279972034, 2463837055, 1564022425, 1403331909, 711761486, 3398248395, 137698444, 2653419169, 1115000482, 741178675, 3545526450, 2279601190, 2798414280, 444624737, 2906858363, 3192434743, 4205268529, 2026476637, 1246643262, 3246143424, 2453153806, 2895461974, 1852699908, 2313744162, 563888305, 3335220329, 2740822254, 3175925612, 704740468, 3995244573, 3530040271, 3747812643, 2027764213, 818973096, 4276854387, 3700306136, 655575899, 318455552, 1474196522, 1003287619, 2488321436, 620248496, 4142030542, 2484080857, 3583543517, 2597833131, 2080491625, 1707772556, 2100851253, 530272096, 2173145387, 3794768658, 1612290587, 2090737854, 3607853305, 1670615463, 2272890635, 2534207357, 390971073, 3503556793, 177846609, 2063036849, 1860814894, 2232655391, 282044139, 2703186010, 1060843601, 3827098923, 448263351, 1250968085, 2004559445, 1867118199, 3947997446, 146507906, 402917812, 1515628014, 3800585933, 3134370484, 1924873022, 3825381381, 1037237157, 2906155663, 3992582499, 3212650785, 419048241, 1966963136, 2799824436, 1043792706, 1625117092, 3166631148, 1559270340, 1892848697, 3460293853, 3683202480, 3853918139, 540089317, 3520720542, 3082052903, 3566225325, 123438425, 3457978066, 3722191000, 569376628, 905425549, 1993670065, 1904753136, 791022062, 2124692254, 682939938, 3028422602, 2465251995, 101309716, 1554743568, 3853934792, 616165042, 2235475780, 3749944864, 2391365518, 289722495, 187811307, 869168997, 2045333885, 2674770994, 159184080, 1252912467, 3882499989, 3955006656, 583475817, 2859789043, 652037275, 3901412022, 3510549288, 1451430045, 4101147790, 4020065490, 2233117211, 3515564926, 4200607541, 170037048, 3246037308, 1144148361, 2414055486, 3436149899, 1128591096, 52693759, 3910334430, 125232142, 4247631226, 3726358581, 4071397627, 1136315449, 1371386602, 2997042503, 1608561518, 1008922472, 2776545714, 116943668, 2182978827, 1712545925, 2014921027, 3998439553, 923465067, 1323992248, 1805341269, 1447604876, 3084117417, 839988725, 2399784942, 4234190522, 897013336, 3616160290, 1387673870, 2813012839, 2866568230, 2238323656, 120172881, 1511418767, 2162383820, 61060568, 1998755313, 2904384895, 4292246372, 1398928939, 2076228969, 1589316381, 2329882702, 3408191594, 2473348127, 2165721092, 2204264850, 2355535705, 1513799730, 980468372, 3372442919, 3949753012, 71804020, 4218662266, 749477881, 1423217223, 3667823346, 1603031152, 2647399128, 4012730045, 1191088525, 3875193441, 344998461, 2084108890, 1879087656, 1511243938, 1853875880, 2038289332, 1625667258, 1873628264, 1104384393, 1885428810, 2134417308, 2962213194, 1711014554, 490157035, 2004695005, 1935765306, 3075653744, 1569476284, 3852552387, 3758031639, 3194310103, 3526766281, 1099588375, 67608518, 3752877881, 3180723593, 3697175702, 2659101432, 559254578, 3457507438, 779434646, 2280445001, 1123014151, 80851032, 3466628042, 3201524833, 3443421006, 999629573, 4235285958, 3035431114, 3979573462, 389346276, 855428457, 1964700093, 1803950088, 162814268, 2066496847, 1532486547, 523444632, 190337250, 3774469949, 1262189321, 1867720730, 2552705273, 1068410549, 2186306142, 4030211864, 2681326543, 213449872, 3521824788, 1162115313, 4100212202, 2259589774, 3816093022, 1355492309, 3470803829, 2584881776, 1056295097, 4157943399, 1414196517, 268622616, 529022701, 1660041256, 324532294, 2647319512, 1221868758, 975653184, 1987363672, 3139085132, 1663573878, 2369005544, 554477805, 882455248, 1175214010, 1845290538, 1835826400, 413430687, 1317570702, 4263782960, 93890901, 276172981, 1048680255, 933940009, 319046872, 1521430826, 1438420499, 23345618, 1621973250, 2757927140, 360575936, 362044198, 3982741685, 1993109705, 1139704891, 2906899027, 1145787852, 1531578434, 2874627975, 2460816476, 2788513444, 35299696, 151892409, 2575082428, 944705097, 1655176576, 670487237, 3759607803, 2732501447, 2678889938, 2871658624, 3960051748, 2001992100, 1293921854, 3809734704, 1172468933, 4083975410, 1934173873, 3729150653, 1912989991, 1410418494, 3517793836, 1408740859, 3705937404, 1389979190, 371715936, 3504531109, 1710265903, 3644542399, 1349887125, 2779822692, 2452521005, 3141308188, 526814028, 576652735, 2249949868, 3038462091, 1152937613, 1826468506, 3038609474, 3854819051, 890042747, 4060457021, 1205535717, 1906007568, 801629411, 2691581481, 3147499706, 3149926589, 2630144178, 2134004702, 1191750952, 750495899, 3572582117, 889870643, 3570321888, 2566739159, 2521715211, 3289963654, 780416825, 1230377932, 1043426945, 2201246048, 586102679, 873561512, 3987504643, 4008638993, 1011857619, 1439548284, 792405206, 2980025419, 1421589552, 2499759546, 1500826165, 4121364239, 2430656841, 666624768, 3588797844, 4072050351, 2961940996, 4216289977, 1733354191, 314507790, 2669747973, 493906767, 2988448705, 3910153268, 62092716, 432318032, 1132816120, 3046925801, 1845822056, 2215033545, 1217621750, 1803137584, 2480946446, 2682870540, 3870812862, 684203448, 634777590, 1188947955, 4007592911, 3909571403, 2451601409, 3119108701, 3829896977, 327708309, 2019487301, 179300691, 817826691, 532891546, 2870016819, 3563395283, 3392316808, 659359525, 4007662865, 793624902, 3093120241, 668846114, 1287437319, 2460422610, 1844861585, 2260702313, 3102732019, 459336574, 454139470, 3601299502, 123065815, 3812800214, 4126212933, 1669935511, 3523114169, 599696121, 2269495689, 2788218475, 2581886601, 4213188443, 3894417837, 375026257, 2556760983, 3826169940, 622208404, 1512635911, 4023908572, 450259775, 553710413, 908383007, 3768999859, 181483150, 2365768688, 2450014773, 1354100307, 1964783253, 1333809974, 2194732974, 2085517313, 4069929739, 906509708, 2506651885, 4034689937, 1071640004, 1837072995, 2094579417, 4189343110, 2443324095])
+
+[node name="trans" type="CenterContainer" parent="TabContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="TabContainer/trans"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/trans/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/trans/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="TabContainer/trans/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="talker" type="Sprite2D" parent="TabContainer/trans/PanelContainer/MarginContainer/VBoxContainer/Control"]
+unique_name_in_owner = true
+position = Vector2(220, -5)
+texture = ExtResource("13_vk23b")
+
+[node name="talker2" type="Sprite2D" parent="TabContainer/trans/PanelContainer/MarginContainer/VBoxContainer/Control"]
+unique_name_in_owner = true
+position = Vector2(379, -5)
+texture = ExtResource("13_vk23b")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TabContainer/trans/PanelContainer/MarginContainer/VBoxContainer/Control"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_q83f8")
+}
+
+[node name="stars" type="Label" parent="TabContainer/trans/PanelContainer/MarginContainer/VBoxContainer/Control"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 124.0
+offset_top = -11.0
+offset_right = 189.0
+offset_bottom = 12.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 2
+text = "*cough*"
+
+[node name="stars_anim" type="AnimationPlayer" parent="TabContainer/trans/PanelContainer/MarginContainer/VBoxContainer/Control"]
+unique_name_in_owner = true
+root_node = NodePath("../stars")
+libraries = {
+&"": SubResource("AnimationLibrary_lx584")
+}
+
+[node name="rt_trans" type="RichTextLabel" parent="TabContainer/trans/PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("ctc_node")]
+unique_name_in_owner = true
+clip_contents = false
+custom_minimum_size = Vector2(600, 22)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25)
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+bbcode_enabled = true
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_urb6m")]
+script = ExtResource("12_gp4ab")
+animation = "prickle"
+progress = 1.0
+visible_character = 46
+_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 87.6094, 17), Transform2D(1, 0, 0, 1, 97.2188, 17), Transform2D(1, 0, 0, 1, 106.828, 17), Transform2D(1, 0, 0, 1, 116.438, 17), Transform2D(1, 0, 0, 1, 126.047, 17), Transform2D(1, 0, 0, 1, 135.656, 17), Transform2D(1, 0, 0, 1, 145.266, 17), Transform2D(1, 0, 0, 1, 154.875, 17), Transform2D(1, 0, 0, 1, 164.484, 17), Transform2D(1, 0, 0, 1, 174.094, 17), Transform2D(1, 0, 0, 1, 183.703, 17), Transform2D(1, 0, 0, 1, 193.313, 17), Transform2D(1, 0, 0, 1, 202.922, 17), Transform2D(1, 0, 0, 1, 212.531, 17), Transform2D(1, 0, 0, 1, 222.141, 17), Transform2D(1, 0, 0, 1, 231.75, 17), Transform2D(1, 0, 0, 1, 241.359, 17), Transform2D(1, 0, 0, 1, 250.969, 17), Transform2D(1, 0, 0, 1, 260.578, 17), Transform2D(1, 0, 0, 1, 270.188, 17), Transform2D(1, 0, 0, 1, 279.797, 17), Transform2D(1, 0, 0, 1, 289.406, 17), Transform2D(1, 0, 0, 1, 299.016, 17), Transform2D(1, 0, 0, 1, 308.625, 17), Transform2D(1, 0, 0, 1, 318.234, 17), Transform2D(1, 0, 0, 1, 327.844, 17), Transform2D(1, 0, 0, 1, 337.453, 17), Transform2D(1, 0, 0, 1, 347.063, 17), Transform2D(1, 0, 0, 1, 356.672, 17), Transform2D(1, 0, 0, 1, 366.281, 17), Transform2D(1, 0, 0, 1, 375.891, 17), Transform2D(1, 0, 0, 1, 385.5, 17), Transform2D(1, 0, 0, 1, 395.109, 17), Transform2D(1, 0, 0, 1, 404.719, 17), Transform2D(1, 0, 0, 1, 414.328, 17), Transform2D(1, 0, 0, 1, 423.938, 17), Transform2D(1, 0, 0, 1, 433.547, 17), Transform2D(1, 0, 0, 1, 443.156, 17), Transform2D(1, 0, 0, 1, 452.766, 17), Transform2D(1, 0, 0, 1, 462.375, 17), Transform2D(1, 0, 0, 1, 471.984, 17), Transform2D(1, 0, 0, 1, 481.594, 17), Transform2D(1, 0, 0, 1, 491.203, 17), Transform2D(1, 0, 0, 1, 500.813, 17), Transform2D(1, 0, 0, 1, 510.422, 17)])
+_char_size = Array[Vector2]([Vector2(0, 0), Vector2(11, 12), Vector2(10, 12), Vector2(10, 12), Vector2(0, 12), Vector2(10, 12), Vector2(10, 12), Vector2(9, 12), Vector2(10, 12), Vector2(10, 12), Vector2(10, 12), Vector2(0, 12), Vector2(11, 12), Vector2(10, 12), Vector2(0, 12), Vector2(10, 12), Vector2(10, 12), Vector2(11, 12), Vector2(10, 12), Vector2(0, 12), Vector2(10, 12), Vector2(11, 12), Vector2(0, 12), Vector2(10, 12), Vector2(10, 12), Vector2(10, 12), Vector2(10, 12), Vector2(0, 12), Vector2(11, 12), Vector2(10, 12), Vector2(10, 12), Vector2(0, 12), Vector2(10, 12), Vector2(10, 12), Vector2(10, 12), Vector2(0, 12), Vector2(10, 12), Vector2(10, 12), Vector2(10, 12), Vector2(11, 12), Vector2(10, 12), Vector2(10, 12), Vector2(10, 12), Vector2(11, 12), Vector2(10, 12), Vector2(6, 12)])
+_alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_showing_ctc = true
+_forced_finish_delay = -0.0347222
+animation = "prickle"
+default_wait_time = 1.0
+play_on_bbcode = true
+play_speed = 30.0
+fade_out = false
+fade_in_speed = 2.0
+fade_out_speed = 120.0
+ctc_node = NodePath("ctc")
+ctc_offset = Vector2(1, -0.5)
+ctc_on_finished = false
+ctc_on_wait = false
+shortcut_expression = true
+shortcut_bookmark = true
+signal_quotes = true
+signal_stars = true
+bbcode = "Long string of text to test out the animation."
+effects = 2
+alignment = 1
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = "RobotoMono-VariableFont_wght"
+font_auto_setup = true
+font_size = 16
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = false
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("../../../../../..")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 1.0
+image_path = "res://"
+image_resize_to_font_size = true
+image_scale = 1.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+metadata/fonts = {
+"NotoColorEmoji": "res://demo/fonts/NotoColorEmoji-Regular.ttf",
+"RobotoMono-VariableFont_wght": "res://demo/fonts/RobotoMono-VariableFont_wght.ttf",
+"emoji_font": "res://demo/fonts/emoji_font.tres"
+}
+metadata/rand = Array[int]([2753019065, 1265122501, 2298518833, 1051145866, 1351453336, 2076938681, 1370545043, 567697946, 2152311275, 1262692686, 2642900563, 198250192, 4275087379, 514267312, 2581070294, 406509779, 3078500240, 2653925492, 532213666, 821291790, 2510064120, 3361689040, 523879988, 584170363, 1105823778, 1598579867, 2645629822, 2297171891, 2586847413, 1589502236, 2843934129, 3355643375, 3059848390, 490859879, 616424924, 4197233564, 2280259702, 3618509036, 1448676430, 440432848, 3142756655, 852686889, 3872465590, 3371610559, 1355315785, 2269882517])
+
+[node name="ctc" type="Node2D" parent="TabContainer/trans/PanelContainer/MarginContainer/VBoxContainer/rt_trans"]
+
+[node name="icon" type="Sprite2D" parent="TabContainer/trans/PanelContainer/MarginContainer/VBoxContainer/rt_trans/ctc"]
+position = Vector2(18, 0)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("13_vk23b")
+
+[node name="spacer" type="Control" parent="TabContainer/trans/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/trans/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/trans/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Progress"
+vertical_alignment = 1
+
+[node name="progress" type="HSlider" parent="TabContainer/trans/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="wait_items" type="HBoxContainer" parent="TabContainer/trans/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/trans/PanelContainer/MarginContainer/VBoxContainer/wait_items"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Waiting"
+vertical_alignment = 1
+
+[node name="waiting" type="HSlider" parent="TabContainer/trans/PanelContainer/MarginContainer/VBoxContainer/wait_items"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.01
+value = 1.0
+editable = false
+
+[node name="hold_items" type="HBoxContainer" parent="TabContainer/trans/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/trans/PanelContainer/MarginContainer/VBoxContainer/hold_items"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Holding"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="camera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+anchor_mode = 0
+script = ExtResource("15_88m0k")
+noise = SubResource("FastNoiseLite_jpag3")
