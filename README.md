@@ -13,7 +13,9 @@
 |![](README/from2.png)|![](README/to2.png)|
 |||
 
-https://github.com/Cauchyoooo/GodotTextEffects/blob/main/effects.mp4
+
+
+https://github.com/user-attachments/assets/8e0f30b5-2483-4280-b904-8ec1898f72c2
 
 https://github.com/user-attachments/assets/caf703ad-44d3-43b0-b4f9-56f513ac572f
 
